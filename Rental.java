@@ -1,18 +1,33 @@
+import Movies.Movie;
+
 public class Rental {
-    private Movie _movie;
-    private int   _daysRented;
-    
-    //?? Data class
+    private Movie movie;
+    private int   daysRented;
+    private String movieTittle;
+
     public Rental(Movie movie, int daysRented) {
-        _movie      = movie;
-        _daysRented = daysRented;
+        this.movie      = movie;
+        this.daysRented = daysRented;
+        this.movieTittle = movie.getTitle();
     }
     
     public int getDaysRented() {
-        return _daysRented;
+        return this.daysRented;
     }
     
     public Movie getMovie() {
-        return _movie;
+        return this.movie;
+    }
+
+    public String getMovieTittle(){
+        return this.movieTittle;
+    }
+
+    public double getRentalCost(){
+        return this.movie.getMovieRentalCost(this.getDaysRented());
+    }
+
+    public int getRentalRewards(){
+        return this.movie.getRewardPoints(this.getDaysRented());
     }
 }
