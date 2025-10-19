@@ -1,3 +1,4 @@
+package app;
 import java.util.ArrayList;
 
 public final class Statement {
@@ -9,7 +10,7 @@ public final class Statement {
 
         System.out.println("    <Movies>");
         ArrayList<Rental> rentals = customer.getRentals();
-        rentals.forEach((n) -> printMovie(n));
+        rentals.forEach((n) -> printRental(n));
         System.out.println("    </Movies>");
 
         System.out.println("    <TotalOwed>" + customer.calculateOwedTotal() + "</TotalOwed>");
@@ -18,9 +19,9 @@ public final class Statement {
 
     }
 
-    private static void printMovie(Rental rental) {
+    private static void printRental(Rental rental) {
         System.out.println("        <Movie>");
-        System.out.println("            <Name>" + rental.getMovieTittle() + "</Name>");
+        System.out.println("            <Name>" + rental.getMovieTitle() + "</Name>");
         System.out.println("            <DaysRented>" + rental.getDaysRented() + "</DaysRented>");
         System.out.println("            <Price>" + rental.getRentalCost() + "</Price>");
         System.out.println("        </Movie>");

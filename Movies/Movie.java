@@ -1,16 +1,22 @@
-package Movies;
+package movies;
+
+import java.time.LocalDate;
+
 public abstract class Movie {
     private String title;
+    private LocalDate releaseDate;
 
-    public Movie(String title) {
+    public Movie(String title, LocalDate releaseDate) {
         this.title = title;
+        this.releaseDate = releaseDate;
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
     
-    public abstract double getMovieRentalCost(int daysRented);
-    
-    public abstract int getRewardPoints(int daysRented);
+    public LocalDate getReleaseDate(){
+        return this.releaseDate;
+    }
+
 }
