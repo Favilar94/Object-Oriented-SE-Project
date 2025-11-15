@@ -41,11 +41,15 @@ public class Customer {
     }
 
     public int calculateRewardsTotal() {
-        this.rewardsPoints += this.transaction.calculateRewardsTotal(getCustomerAge());
-        return this.rewardsPoints;
+        return this.transaction.calculateRewardsTotal(getCustomerAge());
     }
 
-    public void setRewardsPoints(int points) {
+    public void finishTransaction() {
+        this.rewardsPoints += this.calculateRewardsTotal();
+        this.setRewardsPoints(this.rewardsPoints);
+    }
+
+    private void setRewardsPoints(int points) {
         this.rewardsPoints = points;
     }
     public int getRewardsPoints() {

@@ -39,7 +39,7 @@ public class Main {
         Customer customer1 = new Customer(transaction, "Smith", 21, currentRewardsPoints);
         customer1 = new Customer5Off(customer1);
 
-
+        customer1.finishTransaction();
         Statement.printStatement(customer1);
 
     }
