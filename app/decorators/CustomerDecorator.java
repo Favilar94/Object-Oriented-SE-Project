@@ -7,7 +7,7 @@ public abstract class CustomerDecorator extends Customer {
     protected final Customer decoratedCustomer;
 
     public CustomerDecorator(Customer decoratedCustomer) {
-        super(decoratedCustomer.getTransaction(), decoratedCustomer.getCustomerName(), decoratedCustomer.getCustomerAge());
+        super(decoratedCustomer.getTransaction(), decoratedCustomer.getCustomerName(), decoratedCustomer.getCustomerAge(), decoratedCustomer.getRewardsPoints());
         this.decoratedCustomer = decoratedCustomer;
     }
 

@@ -23,10 +23,4 @@ public class Rental1Off extends RentalDecorator {
             return originalPrice;
         }
     }
-
-    @Override
-    public int getRentalRewards(int customerAge) {
-        return decoratedRental.getRentalRewards(customerAge);
-    }
-
 }

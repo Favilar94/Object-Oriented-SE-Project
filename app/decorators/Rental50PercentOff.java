@@ -15,10 +15,4 @@ public class Rental50PercentOff extends RentalDecorator{
         double originalPrice = this.decoratedRental.getRentalCost();
         return originalPrice * 0.5;
     }
-
-    @Override
-    public int getRentalRewards(int customerAge) {
-        return decoratedRental.getRentalRewards(customerAge);
-    }
-
 }
