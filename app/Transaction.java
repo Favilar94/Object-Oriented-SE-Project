@@ -1,6 +1,8 @@
 package app;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Transaction {
     private ArrayList<Rental> rentals = new ArrayList<>();
@@ -10,8 +12,8 @@ public class Transaction {
         rentals.add(rental);
     }
 
-    public ArrayList<Rental> getRentals() {
-        return this.rentals;
+    public List<Rental> getRentals() {
+        return Collections.unmodifiableList(this.rentals);
     }
 
     public double calculateOwedTotal() {

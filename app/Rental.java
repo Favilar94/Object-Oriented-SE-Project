@@ -18,8 +18,7 @@ public class Rental {
 
     private CostStrategy costStrategy;
     private RewardStrategy rewardsStrategy;
-    protected boolean appliedDiscount = false;
-    protected double originalPrice = 0.0;
+    
 
     public Rental(Movie movie, int daysRented) {
         this.movie = movie;
@@ -46,7 +45,7 @@ public class Rental {
     private boolean isNewReleaseMovie() {
         LocalDate release = this.movie.getReleaseDate();
         LocalDate today = LocalDate.now();
-        boolean newReleaseMovie = release.isAfter(today.plusDays(-30));
+        boolean newReleaseMovie = release.isAfter(today.minusDays(30));
         return newReleaseMovie;
     }
 
@@ -70,11 +69,4 @@ public class Rental {
         return this.rewardsStrategy.getRewardPoints(this.getDaysRented(), customerAge);
     }
 
-    public boolean isAppliedDiscount() {
-        return this.appliedDiscount;
-    }
-
-    public double getOriginalPrice() {
-        return this.originalPrice;
-    }
 }

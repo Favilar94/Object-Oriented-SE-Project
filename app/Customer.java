@@ -1,5 +1,5 @@
 package app;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Customer {
     private String customerName;
@@ -29,7 +29,7 @@ public class Customer {
         return this.transaction;
     } 
 
-    public ArrayList<Rental> getRentals() {
+    public List<Rental> getRentals() {
         return transaction.getRentals();
     }
 
