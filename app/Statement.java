@@ -20,10 +20,15 @@ public final class Statement {
     }
 
     private static void printRental(Rental rental) {
+        double price = rental.getRentalCost();
         System.out.println("        <Movie>");
         System.out.println("            <Name>" + rental.getMovieTitle() + "</Name>");
         System.out.println("            <DaysRented>" + rental.getDaysRented() + "</DaysRented>");
-        System.out.println("            <Price>" + rental.getRentalCost() + "</Price>");
+        if(rental.isAppliedDiscount()){
+            System.out.println("            <PriceBeforeCoupon>" + rental.getOriginalPrice() + "</PriceBeforeCoupon>");
+        }
+        System.out.println("            <Price>" + price + "</Price>");
+
         System.out.println("        </Movie>");
     }
 

@@ -4,46 +4,41 @@ import java.util.ArrayList;
 public class Customer {
     private String customerName;
     private int age;
-    private ArrayList<Rental> rentals = new ArrayList<>();
+    private Transaction transaction;
 
-    public Customer(String name, int age) {
+    public Customer(Transaction transaction, String name, int age) {
+        this.transaction = transaction;
         this.customerName = name;
         this.age = age;
     }
-
-    public void addRental(Rental rental) {
-        rentals.add(rental);
-    }
-
     public String getCustomerName() {
         return this.customerName;
     }
+    public void setCustomerName(String name) {
+        this.customerName = name;
+    }  
 
     public int getCustomerAge() {
         return this.age;
     }
+    public void setCustomerAge(int age) {
+        this.age = age;
+    }
+
+    public Transaction getTransaction() {
+        return this.transaction;
+    } 
 
     public ArrayList<Rental> getRentals() {
-        return this.rentals;
+        return transaction.getRentals();
     }
 
     public double calculateOwedTotal() {
-        double totalAmount = 0;
 
-        for (Rental rental : rentals) {
-            totalAmount += rental.getRentalCost();
-        }
-        return totalAmount;
-
+        return this.transaction.calculateOwedTotal();
     }
 
     public int calculateRewardsTotal() {
-        int totalRewards = 0;
-        for (Rental rental : rentals) {
-            totalRewards += rental.getRentalRewards(getCustomerAge());
-        }
-        return totalRewards;
-
+        return this.transaction.calculateRewardsTotal(getCustomerAge());
     }
-
 }

@@ -18,6 +18,8 @@ public class Rental {
 
     private CostStrategy costStrategy;
     private RewardStrategy rewardsStrategy;
+    protected boolean appliedDiscount = false;
+    protected double originalPrice = 0.0;
 
     public Rental(Movie movie, int daysRented) {
         this.movie = movie;
@@ -66,5 +68,13 @@ public class Rental {
 
     public int getRentalRewards(int customerAge) {
         return this.rewardsStrategy.getRewardPoints(this.getDaysRented(), customerAge);
+    }
+
+    public boolean isAppliedDiscount() {
+        return this.appliedDiscount;
+    }
+
+    public double getOriginalPrice() {
+        return this.originalPrice;
     }
 }
