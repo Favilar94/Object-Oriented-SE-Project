@@ -1,9 +1,9 @@
-package costs;
+package costs.rental;
 
-public class RegularMovieCostStrategy implements CostStrategy{
+public class RegularMovieRentalCostStrategy implements RentalCostStrategy{
     
     @Override
-    public double getMovieRentalCost(int daysRented) {
+    public double getCost(int daysRented) {
         double thisAmount = 2;
         
         if(daysRented > 2){

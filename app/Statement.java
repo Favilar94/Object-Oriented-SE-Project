@@ -9,10 +9,15 @@ public final class Statement {
         System.out.println("<Rental>");
         System.out.println("    <CustomerName>" + customer.getCustomerName() + "</CustomerName>");
 
-        System.out.println("    <Movies>");
+        System.out.println("    <RentedMovies>");
         List<Rental> rentals = customer.getRentals();
         rentals.forEach((n) -> printRental(n));
-        System.out.println("    </Movies>");
+        System.out.println("    </RentedMovies>");
+
+        System.out.println("    <PurchasedMovies>");
+        List<Purchase> purchases = customer.getPurchases();
+        purchases.forEach((n) -> printPurchases(n));
+        System.out.println("    </PurchasedMovies>");
 
         System.out.println("    <TotalOwed>" + customer.calculateOwedTotal() + "</TotalOwed>");
         System.out.println("    <RewardsPoints>" + customer.calculateRewardsTotal() + "</RewardsPoints>");
@@ -26,7 +31,14 @@ public final class Statement {
         System.out.println("            <Name>" + rental.getMovieTitle() + "</Name>");
         System.out.println("            <DaysRented>" + rental.getDaysRented() + "</DaysRented>");
         System.out.println("            <Price>" + price + "</Price>");
+        System.out.println("        </Movie>");
+    }
 
+    private static void printPurchases(Purchase purchase) {
+        double price = purchase.getPurchaseCost();
+        System.out.println("        <Movie>");
+        System.out.println("            <Name>" + purchase.getMovieTitle() + "</Name>");
+        System.out.println("            <Price>" + price + "</Price>");
         System.out.println("        </Movie>");
     }
 

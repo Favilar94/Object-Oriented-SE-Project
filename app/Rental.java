@@ -1,23 +1,23 @@
 package app;
 import java.time.LocalDate;
 
-import costs.ChildrenCostStrategy;
-import costs.CostStrategy;
-import costs.NewReleaseCostStrategy;
-import costs.RegularMovieCostStrategy;
+import costs.rental.ChildrenRentalCostStrategy;
+import costs.rental.RentalCostStrategy;
+import costs.rental.NewReleaseRentalCostStrategy;
+import costs.rental.RegularMovieRentalCostStrategy;
 import movies.ChildrenMovie;
 import movies.Movie;
 import movies.RegularMovie;
-import rewards.NewReleaseRewardStrategy;
-import rewards.RegularRewardStrategy;
-import rewards.RewardStrategy;
+import rewards.rental.NewReleaseRentalRewardStrategy;
+import rewards.rental.RegularRentalRewardStrategy;
+import rewards.rental.RentalRewardStrategy;
 
 public class Rental {
     private Movie movie;
     private int daysRented;
 
-    private CostStrategy costStrategy;
-    private RewardStrategy rewardsStrategy;
+    private RentalCostStrategy costStrategy;
+    private RentalRewardStrategy rewardsStrategy;
     
 
     public Rental(Movie movie, int daysRented) {
@@ -29,14 +29,14 @@ public class Rental {
 
     private void assignStrategies() {
         if (this.isNewReleaseMovie()) {
-            this.costStrategy = new NewReleaseCostStrategy();
-            this.rewardsStrategy = new NewReleaseRewardStrategy();
+            this.costStrategy = new NewReleaseRentalCostStrategy();
+            this.rewardsStrategy = new NewReleaseRentalRewardStrategy();
         } else if (this.movie instanceof ChildrenMovie) {
-            this.costStrategy = new ChildrenCostStrategy();
-            this.rewardsStrategy = new RegularRewardStrategy();
+            this.costStrategy = new ChildrenRentalCostStrategy();
+            this.rewardsStrategy = new RegularRentalRewardStrategy();
         } else if (this.movie instanceof RegularMovie) {
-            this.costStrategy = new RegularMovieCostStrategy();
-            this.rewardsStrategy = new RegularRewardStrategy();
+            this.costStrategy = new RegularMovieRentalCostStrategy();
+            this.rewardsStrategy = new RegularRentalRewardStrategy();
         } else {
             throw new IllegalArgumentException("Unsupported movie type: " + movie.getClass());
         }
@@ -62,7 +62,7 @@ public class Rental {
     }
 
     public double getRentalCost() {
-        return this.costStrategy.getMovieRentalCost(this.getDaysRented());
+        return this.costStrategy.getCost(this.getDaysRented());
     }
 
     public int getRentalRewards(int customerAge) {

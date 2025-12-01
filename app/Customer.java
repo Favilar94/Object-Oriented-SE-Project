@@ -35,6 +35,11 @@ public class Customer {
         return transaction.getRentals();
     }
 
+    public List<Purchase> getPurchases() {
+        return transaction.getPurchases();
+    }
+
+
     public double calculateOwedTotal() {
 
         return this.transaction.calculateOwedTotal();

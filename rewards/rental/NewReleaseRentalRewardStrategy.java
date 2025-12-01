@@ -1,6 +1,6 @@
-package rewards;
+package rewards.rental;
 
-public class NewReleaseRewardStrategy implements RewardStrategy{
+public class NewReleaseRentalRewardStrategy implements RentalRewardStrategy{
     @Override
     public int getRewardPoints(int daysRented, int customerAge){
         

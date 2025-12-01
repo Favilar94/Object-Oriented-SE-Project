@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Transaction {
     private ArrayList<Rental> rentals = new ArrayList<>();
+    private ArrayList<Purchase> purchases = new ArrayList<>();
 
 
     public void addRental(Rental rental) {
@@ -16,12 +17,26 @@ public class Transaction {
         return Collections.unmodifiableList(this.rentals);
     }
 
+
+    public void addPurchase(Purchase purchase) {
+        purchases.add(purchase);
+    }
+
+    public List<Purchase> getPurchases() {
+        return Collections.unmodifiableList(this.purchases);
+    }
+
+
     public double calculateOwedTotal() {
         double totalAmount = 0;
 
         for (Rental rental : this.rentals) {
             totalAmount += rental.getRentalCost();
         }
+        for( Purchase purchase : this.purchases) {
+            totalAmount += purchase.getPurchaseCost();
+        }
+
         return totalAmount;
     }
 
@@ -30,6 +45,10 @@ public class Transaction {
         for (Rental rental : this.rentals) {
             totalRewards += rental.getRentalRewards(customerAge);
         }
+        for (Purchase purchase : this.purchases) {
+            totalRewards += purchase.getPurchaseRewards(customerAge);
+        }
+
         return totalRewards;
     }
 }
