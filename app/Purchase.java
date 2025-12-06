@@ -2,9 +2,8 @@ package app;
 
 import java.time.LocalDate;
 
-import movies.ChildrenMovie;
 import movies.Movie;
-import movies.RegularMovie;
+import movies.MovieTypes;
 
 import costs.purchase.ChildrenPurchaseCostStrategy;
 import costs.purchase.NewReleasePurchaseCostStrategy;
@@ -30,10 +29,10 @@ public class Purchase {
         if (this.isNewReleaseMovie()) {
             this.costStrategy = new NewReleasePurchaseCostStrategy();
             this.rewardsStrategy = new NewReleasePurchaseRewardStrategy();
-        } else if (this.movie instanceof ChildrenMovie) {
+        } else if (this.movie.getMovieType() == MovieTypes.CHILDREN) {
             this.costStrategy = new ChildrenPurchaseCostStrategy();
             this.rewardsStrategy = new RegularPurchaseRewardStrategy();
-        } else if (this.movie instanceof RegularMovie) {
+        } else if (this.movie.getMovieType() == MovieTypes.REGULAR) {
             this.costStrategy = new RegularMoviePurchaseCostStrategy();
             this.rewardsStrategy = new RegularPurchaseRewardStrategy();
         } else {

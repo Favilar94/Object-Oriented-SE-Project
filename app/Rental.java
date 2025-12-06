@@ -5,9 +5,8 @@ import costs.rental.ChildrenRentalCostStrategy;
 import costs.rental.RentalCostStrategy;
 import costs.rental.NewReleaseRentalCostStrategy;
 import costs.rental.RegularMovieRentalCostStrategy;
-import movies.ChildrenMovie;
 import movies.Movie;
-import movies.RegularMovie;
+import movies.MovieTypes;
 import rewards.rental.NewReleaseRentalRewardStrategy;
 import rewards.rental.RegularRentalRewardStrategy;
 import rewards.rental.RentalRewardStrategy;
@@ -31,10 +30,10 @@ public class Rental {
         if (this.isNewReleaseMovie()) {
             this.costStrategy = new NewReleaseRentalCostStrategy();
             this.rewardsStrategy = new NewReleaseRentalRewardStrategy();
-        } else if (this.movie instanceof ChildrenMovie) {
+        } else if (this.movie.getMovieType() == MovieTypes.CHILDREN) {
             this.costStrategy = new ChildrenRentalCostStrategy();
             this.rewardsStrategy = new RegularRentalRewardStrategy();
-        } else if (this.movie instanceof RegularMovie) {
+        } else if (this.movie.getMovieType() == MovieTypes.REGULAR) {
             this.costStrategy = new RegularMovieRentalCostStrategy();
             this.rewardsStrategy = new RegularRentalRewardStrategy();
         } else {
