@@ -1,4 +1,4 @@
 package costs.purchase;
 public interface PurchaseCostStrategy {
-        double getCost();
+        double getCost( String itemType);
 }

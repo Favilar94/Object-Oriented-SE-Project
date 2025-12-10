@@ -63,4 +63,9 @@ public class Movie extends Item implements app.Rentable, app.Purchasable {
         }
 
     }
+
+    @Override
+    public String getItemType() {
+        return movieType.toString();
+    }
 }

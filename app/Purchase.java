@@ -23,7 +23,7 @@ public class Purchase {
     }
 
     public double getPurchaseCost() {
-        return this.item.pruchaseCostStrategy.getCost();
+        return this.item.pruchaseCostStrategy.getCost(this.item.getItemType());
 
     }
 

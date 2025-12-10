@@ -33,11 +33,16 @@ public abstract class Item {
     }
 
     public boolean isNewRelease() {
-        LocalDate release = this.getReleaseDate();
-        LocalDate today = LocalDate.now();
-        boolean newReleaseMovie = release.isAfter(today.minusDays(30));
-        return newReleaseMovie;
+        if(this.releaseDate == null) {
+            return false;
+        }else{
+            LocalDate today = LocalDate.now();
+            boolean newReleaseMovie = this.releaseDate.isAfter(today.minusDays(30));
+            return newReleaseMovie;
+        }
     }
+    
+    public abstract String getItemType();
 
     public abstract void assignStrategies(ItemOperation operation);
 
