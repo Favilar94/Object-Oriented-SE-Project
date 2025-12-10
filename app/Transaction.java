@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
 public class Transaction {
     private ArrayList<Rental> rentals = new ArrayList<>();
     private ArrayList<Purchase> purchases = new ArrayList<>();
@@ -25,6 +26,7 @@ public class Transaction {
     public List<Purchase> getPurchases() {
         return Collections.unmodifiableList(this.purchases);
     }
+
 
 
     public double calculateOwedTotal() {

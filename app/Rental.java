@@ -1,71 +1,40 @@
 package app;
-import java.time.LocalDate;
+import items.ItemOperation;
 
-import costs.rental.ChildrenRentalCostStrategy;
-import costs.rental.RentalCostStrategy;
-import costs.rental.NewReleaseRentalCostStrategy;
-import costs.rental.RegularMovieRentalCostStrategy;
-import movies.Movie;
-import movies.MovieTypes;
-import rewards.rental.NewReleaseRentalRewardStrategy;
-import rewards.rental.RegularRentalRewardStrategy;
-import rewards.rental.RentalRewardStrategy;
 
 public class Rental {
-    private Movie movie;
+    private Item item;
     private int daysRented;
 
-    private RentalCostStrategy costStrategy;
-    private RentalRewardStrategy rewardsStrategy;
-    
-
-    public Rental(Movie movie, int daysRented) {
-        this.movie = movie;
-        this.daysRented = daysRented;
-        this.assignStrategies();
-
-    }
-
-    private void assignStrategies() {
-        if (this.isNewReleaseMovie()) {
-            this.costStrategy = new NewReleaseRentalCostStrategy();
-            this.rewardsStrategy = new NewReleaseRentalRewardStrategy();
-        } else if (this.movie.getMovieType() == MovieTypes.CHILDREN) {
-            this.costStrategy = new ChildrenRentalCostStrategy();
-            this.rewardsStrategy = new RegularRentalRewardStrategy();
-        } else if (this.movie.getMovieType() == MovieTypes.REGULAR) {
-            this.costStrategy = new RegularMovieRentalCostStrategy();
-            this.rewardsStrategy = new RegularRentalRewardStrategy();
-        } else {
-            throw new IllegalArgumentException("Unsupported movie type: " + movie.getClass());
+    public Rental(Item item, int daysRented) {
+        if(! (item instanceof app.Rentable)) {
+            throw new IllegalArgumentException("Item is not rentable: " + item);
         }
+        this.item = item;
+        this.daysRented = daysRented;
+        this.item.assignStrategies(ItemOperation.RENT);
+
     }
-    
-    private boolean isNewReleaseMovie() {
-        LocalDate release = this.movie.getReleaseDate();
-        LocalDate today = LocalDate.now();
-        boolean newReleaseMovie = release.isAfter(today.minusDays(30));
-        return newReleaseMovie;
-    }
+
 
     public int getDaysRented() {
         return this.daysRented;
     }
 
-    public Movie getMovie() {
-        return this.movie;
+    public Item getItem() {
+        return this.item;
     }
 
-    public String getMovieTitle() {
-        return this.movie.getTitle();
+    public String getItemTitle() {
+        return this.item.getTitle();
     }
 
     public double getRentalCost() {
-        return this.costStrategy.getCost(this.getDaysRented());
+        return this.item.rentalCostStrategy.getCost(this.getDaysRented());
     }
 
     public int getRentalRewards(int customerAge) {
-        return this.rewardsStrategy.getRewardPoints(this.getDaysRented(), customerAge);
+        return this.item.rentalRewardsStrategy.getRewardPoints(this.getDaysRented(), customerAge);
     }
 
 }

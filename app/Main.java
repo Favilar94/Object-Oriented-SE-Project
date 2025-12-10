@@ -5,8 +5,8 @@ import app.decorators.Customer5Off;
 import app.decorators.Rental1Off;
 import app.decorators.Rental50PercentOff;
 import app.decorators.RentalFree;
-import movies.Movie;
-import movies.MovieTypes;
+import items.Movie;
+import items.MovieType;
 
 
 public class Main {
@@ -14,12 +14,10 @@ public class Main {
         
         int currentRewardsPoints = 15; //Assuming that is coming from the customer profile
 
-
-
-        Movie terminatorMovie = new Movie("The Terminator", MovieTypes.REGULAR ,LocalDate.parse("1984-10-26"));
-        Movie minecraftMovie = new Movie("A Minecraft Movie", MovieTypes.CHILDREN, LocalDate.parse("2025-04-04"));
-        Movie tronAresMovie = new Movie("Tron Ares", MovieTypes.REGULAR, LocalDate.parse("2025-11-10"));
-        Movie donnieDarkoMovie = new Movie("Donnie Darko", MovieTypes.REGULAR, LocalDate.parse("2001-11-26"));
+        Movie terminatorMovie = new Movie("The Terminator", MovieType.REGULAR ,LocalDate.parse("1984-10-26"));
+        Movie minecraftMovie = new Movie("A Minecraft Movie", MovieType.CHILDREN, LocalDate.parse("2025-04-04"));
+        Movie tronAresMovie = new Movie("Tron Ares", MovieType.REGULAR, LocalDate.parse("2025-11-10"));
+        Movie donnieDarkoMovie = new Movie("Donnie Darko", MovieType.REGULAR, LocalDate.parse("2001-11-26"));
 
         Rental rental1 = new Rental(terminatorMovie, 14);
         rental1 = new Rental50PercentOff(rental1);

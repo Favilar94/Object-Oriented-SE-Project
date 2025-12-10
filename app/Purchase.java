@@ -1,67 +1,34 @@
 package app;
 
-import java.time.LocalDate;
+import items.ItemOperation;
 
-import movies.Movie;
-import movies.MovieTypes;
-
-import costs.purchase.ChildrenPurchaseCostStrategy;
-import costs.purchase.NewReleasePurchaseCostStrategy;
-import costs.purchase.RegularMoviePurchaseCostStrategy;
-import costs.purchase.PurchaseCostStrategy;
-import rewards.purchase.NewReleasePurchaseRewardStrategy;
-import rewards.purchase.RegularPurchaseRewardStrategy;
-import rewards.purchase.PurchaseRewardStrategy;
 
 public class Purchase {
-    private Movie movie;
+    private Item item;
 
-    private PurchaseCostStrategy costStrategy;
-    private PurchaseRewardStrategy rewardsStrategy;
-
-    public Purchase(Movie movie) {
-        this.movie = movie;
-        this.assignStrategies();
-    }
-
-
-    private void assignStrategies() {
-        if (this.isNewReleaseMovie()) {
-            this.costStrategy = new NewReleasePurchaseCostStrategy();
-            this.rewardsStrategy = new NewReleasePurchaseRewardStrategy();
-        } else if (this.movie.getMovieType() == MovieTypes.CHILDREN) {
-            this.costStrategy = new ChildrenPurchaseCostStrategy();
-            this.rewardsStrategy = new RegularPurchaseRewardStrategy();
-        } else if (this.movie.getMovieType() == MovieTypes.REGULAR) {
-            this.costStrategy = new RegularMoviePurchaseCostStrategy();
-            this.rewardsStrategy = new RegularPurchaseRewardStrategy();
-        } else {
-            throw new IllegalArgumentException("Unsupported movie type: " + movie.getClass());
+    public Purchase(Item item) {
+        if(! (item instanceof app.Purchasable)) {
+            throw new IllegalArgumentException("Item is not rentable: " + item);
         }
+        this.item = item;
+        this.item.assignStrategies(ItemOperation.PURCHASE);
     }
 
-    private boolean isNewReleaseMovie() {
-        LocalDate release = this.movie.getReleaseDate();
-        LocalDate today = LocalDate.now();
-        boolean newReleaseMovie = release.isAfter(today.minusDays(30));
-        return newReleaseMovie;
-    }
-    public Movie getMovie() {
-        return this.movie;
+    public Item getItem() {
+        return this.item;
     }
 
-
-    public String getMovieTitle() {
-        return this.movie.getTitle();
+    public String getItemTitle() {
+        return this.item.getTitle();
     }
 
     public double getPurchaseCost() {
-        return this.costStrategy.getCost();
+        return this.item.pruchaseCostStrategy.getCost();
 
     }
 
     public int getPurchaseRewards(int customerAge) {
-        return this.rewardsStrategy.getRewardPoints(customerAge);
+        return this.item.pruchaseRewardsStrategy.getRewardPoints(customerAge);
     }
 
 }

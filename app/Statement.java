@@ -28,7 +28,7 @@ public final class Statement {
     private static void printRental(Rental rental) {
         double price = rental.getRentalCost();
         System.out.println("        <Movie>");
-        System.out.println("            <Name>" + rental.getMovieTitle() + "</Name>");
+        System.out.println("            <Name>" + rental.getItemTitle() + "</Name>");
         System.out.println("            <DaysRented>" + rental.getDaysRented() + "</DaysRented>");
         System.out.println("            <Price>" + price + "</Price>");
         System.out.println("        </Movie>");
@@ -37,7 +37,7 @@ public final class Statement {
     private static void printPurchases(Purchase purchase) {
         double price = purchase.getPurchaseCost();
         System.out.println("        <Movie>");
-        System.out.println("            <Name>" + purchase.getMovieTitle() + "</Name>");
+        System.out.println("            <Name>" + purchase.getItemTitle() + "</Name>");
         System.out.println("            <Price>" + price + "</Price>");
         System.out.println("        </Movie>");
     }
