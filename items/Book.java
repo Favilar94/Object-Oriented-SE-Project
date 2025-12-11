@@ -15,8 +15,8 @@ public class Book extends Item implements app.Purchasable{
     @Override
     public void assignStrategies(ItemOperation operation) {
         if (operation == ItemOperation.PURCHASE) {
-            this.pruchaseCostStrategy = new costs.purchase.BookPurchaseCostStrategy();
-            this.pruchaseRewardsStrategy = new rewards.purchase.BookPurchaseRewardStrategy();
+            this.purchaseCostStrategy = new costs.purchase.BookPurchaseCostStrategy();
+            this.purchaseRewardsStrategy = new rewards.purchase.BookPurchaseRewardStrategy();
         } 
         else{
             throw new IllegalArgumentException("Unsupported operation: " + operation);

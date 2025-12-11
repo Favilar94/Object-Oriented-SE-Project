@@ -22,11 +22,11 @@ public class Playstation extends Item implements app.Purchasable{
     public void assignStrategies(ItemOperation operation) {
         if(operation == ItemOperation.PURCHASE) {
             if (this.getVersion() == Version.PRO) {
-                this.pruchaseCostStrategy = new PlaystationPurchaseCostStrategy();
-                this.pruchaseRewardsStrategy = new PlaystationPurchaseRewardStrategy();
+                this.purchaseCostStrategy = new PlaystationPurchaseCostStrategy();
+                this.purchaseRewardsStrategy = new PlaystationPurchaseRewardStrategy();
             } else if (this.getVersion() == Version.STANDARD) {
-                this.pruchaseCostStrategy = new PlaystationPurchaseCostStrategy();
-                this.pruchaseRewardsStrategy = new PlaystationPurchaseRewardStrategy();
+                this.purchaseCostStrategy = new PlaystationPurchaseCostStrategy();
+                this.purchaseRewardsStrategy = new PlaystationPurchaseRewardStrategy();
             } else {
                 throw new IllegalArgumentException("Unsupported version type: " + getClass());
             }

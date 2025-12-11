@@ -34,8 +34,8 @@ public class VideoGame extends Item implements app.Rentable, app.Purchasable {
         }
         else if(operation == ItemOperation.PURCHASE) {
             if (this.getVersion() == Version.STANDARD) {
-                this.pruchaseCostStrategy = new VideoGamePurchaseCostStrategy();
-                this.pruchaseRewardsStrategy = new VideoGamePurchaseRewardStrategy();
+                this.purchaseCostStrategy = new VideoGamePurchaseCostStrategy();
+                this.purchaseRewardsStrategy = new VideoGamePurchaseRewardStrategy();
             } else {
                 throw new IllegalArgumentException("Unsupported version type: " + getClass());
             }

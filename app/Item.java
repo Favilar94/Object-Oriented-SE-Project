@@ -17,8 +17,8 @@ public abstract class Item {
 
     public RentalCostStrategy rentalCostStrategy;
     public RentalRewardStrategy rentalRewardsStrategy;
-    public PurchaseCostStrategy pruchaseCostStrategy;
-    public PurchaseRewardStrategy pruchaseRewardsStrategy;
+    public PurchaseCostStrategy purchaseCostStrategy;
+    public PurchaseRewardStrategy purchaseRewardsStrategy;
 
     public Item(String title, LocalDate releaseDate) {
         this.title = title;

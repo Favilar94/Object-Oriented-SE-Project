@@ -18,8 +18,8 @@ public class Popcorn extends Item implements app.Purchasable {
     @Override
     public void assignStrategies(ItemOperation operation) {
         if (operation == ItemOperation.PURCHASE) {
-            this.pruchaseCostStrategy = new costs.purchase.PopcornPurchaseCostStrategy();
-            this.pruchaseRewardsStrategy = new rewards.purchase.PopcornPurchaseRewardStrategy();
+            this.purchaseCostStrategy = new costs.purchase.PopcornPurchaseCostStrategy();
+            this.purchaseRewardsStrategy = new rewards.purchase.PopcornPurchaseRewardStrategy();
         } 
         else{
             throw new IllegalArgumentException("Unsupported operation: " + operation);

@@ -23,12 +23,12 @@ public class Purchase {
     }
 
     public double getPurchaseCost() {
-        return this.item.pruchaseCostStrategy.getCost(this.item.getItemType());
+        return this.item.purchaseCostStrategy.getCost(this.item.getItemType());
 
     }
 
     public int getPurchaseRewards(int customerAge) {
-        return this.item.pruchaseRewardsStrategy.getRewardPoints(customerAge);
+        return this.item.purchaseRewardsStrategy.getRewardPoints(customerAge);
     }
 
 }

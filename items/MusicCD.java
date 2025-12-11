@@ -16,8 +16,8 @@ public class MusicCD extends Item implements app.Purchasable{
     @Override
     public void assignStrategies(ItemOperation operation) {
         if (operation == ItemOperation.PURCHASE) {
-            this.pruchaseCostStrategy = new costs.purchase.MusicCDPurchaseCostStrategy();
-            this.pruchaseRewardsStrategy = new rewards.purchase.MusicCDPurchaseRewardStrategy();
+            this.purchaseCostStrategy = new costs.purchase.MusicCDPurchaseCostStrategy();
+            this.purchaseRewardsStrategy = new rewards.purchase.MusicCDPurchaseRewardStrategy();
         } 
         else{
             throw new IllegalArgumentException("Unsupported operation: " + operation);

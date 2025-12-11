@@ -33,14 +33,14 @@ public class Movie extends Item implements app.Rentable, app.Purchasable {
 
         if(operation == ItemOperation.PURCHASE) {
             if (super.isNewRelease()) {
-                this.pruchaseCostStrategy = new NewReleasePurchaseCostStrategy();
-                this.pruchaseRewardsStrategy = new NewReleasePurchaseRewardStrategy();
+                this.purchaseCostStrategy = new NewReleasePurchaseCostStrategy();
+                this.purchaseRewardsStrategy = new NewReleasePurchaseRewardStrategy();
             } else if (this.getMovieType() == MovieType.CHILDREN) {
-                this.pruchaseCostStrategy = new ChildrenPurchaseCostStrategy();
-                this.pruchaseRewardsStrategy = new RegularPurchaseRewardStrategy();
+                this.purchaseCostStrategy = new ChildrenPurchaseCostStrategy();
+                this.purchaseRewardsStrategy = new RegularPurchaseRewardStrategy();
             } else if (this.getMovieType() == MovieType.REGULAR) {
-                this.pruchaseCostStrategy = new RegularMoviePurchaseCostStrategy();
-                this.pruchaseRewardsStrategy = new RegularPurchaseRewardStrategy();
+                this.purchaseCostStrategy = new RegularMoviePurchaseCostStrategy();
+                this.purchaseRewardsStrategy = new RegularPurchaseRewardStrategy();
             } else {
                 throw new IllegalArgumentException("Unsupported movie type: " + getClass());
             }
