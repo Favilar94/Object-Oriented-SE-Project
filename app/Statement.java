@@ -26,23 +26,21 @@ public final class Statement {
     }
 
     private static void printRental(Rental rental) {
-        double price = rental.getRentalCost();
-        System.out.println("        <Item>");
-        System.out.println("            <Type>" + rental.getItem().getClass().toString()+ "</Type>");
-        System.out.println("            <Version>" + rental.getItem().getItemType()+ "</Version>");
-
-        System.out.println("            <Name>" + rental.getItemTitle() + "</Name>");
-        System.out.println("            <DaysRented>" + rental.getDaysRented() + "</DaysRented>");
-        System.out.println("            <Price>" + price + "</Price>");
-        System.out.println("        </Item>");
+        printItem(rental.getItem(), rental.getItemTitle(), rental.getRentalCost(), rental.getDaysRented());
     }
 
     private static void printPurchases(Purchase purchase) {
-        double price = purchase.getPurchaseCost();
+        printItem(purchase.getItem(), purchase.getItemTitle(), purchase.getPurchaseCost(), null);
+    }
+
+    private static void printItem(Item item, String name, Double price, Integer daysRented) {
         System.out.println("        <Item>");
-        System.out.println("            <Type>" + purchase.getItem().getClass().toString()+ "</Type>");
-        System.out.println("            <Version>" + purchase.getItem().getItemType()+ "</Version>");
-        System.out.println("            <Name>" + purchase.getItemTitle() + "</Name>");
+        System.out.println("            <Type>" + item.getClass().getSimpleName() + "</Type>");
+        System.out.println("            <Version>" + item.getItemType() + "</Version>");
+        System.out.println("            <Name>" + name + "</Name>");
+        if (daysRented != null) {
+            System.out.println("            <DaysRented>" + daysRented + "</DaysRented>");
+        }
         System.out.println("            <Price>" + price + "</Price>");
         System.out.println("        </Item>");
     }

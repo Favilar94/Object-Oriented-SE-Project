@@ -12,8 +12,8 @@ import items.ItemOperation;
 
 public abstract class Item {
     
-    public String title;
-    public LocalDate releaseDate;
+    private String title;
+    private LocalDate releaseDate;
 
     public RentalCostStrategy rentalCostStrategy;
     public RentalRewardStrategy rentalRewardsStrategy;
@@ -45,5 +45,33 @@ public abstract class Item {
     public abstract String getItemType();
 
     public abstract void assignStrategies(ItemOperation operation);
+
+    public double getRentalCost(int daysRented) {
+        if (this.rentalCostStrategy == null) {
+            throw new IllegalStateException("rentalCostStrategy not assigned for item: " + this.title);
+        }
+        return this.rentalCostStrategy.getCost(daysRented);
+    }
+
+    public double getPurchaseCost() {
+        if (this.purchaseCostStrategy == null) {
+            throw new IllegalStateException("purchaseCostStrategy not assigned for item: " + this.title);
+        }
+        return this.purchaseCostStrategy.getCost(this.getItemType());
+    }
+
+    public int getRentalRewards(int daysRented, int customerAge) {
+        if (this.rentalRewardsStrategy == null) {
+            throw new IllegalStateException("rentalRewardsStrategy not assigned for item: " + this.title);
+        }
+        return this.rentalRewardsStrategy.getRewardPoints(daysRented, customerAge);
+    }
+
+    public int getPurchaseRewards(int customerAge) {
+        if (this.purchaseRewardsStrategy == null) {
+            throw new IllegalStateException("purchaseRewardsStrategy not assigned for item: " + this.title);
+        }
+        return this.purchaseRewardsStrategy.getRewardPoints(customerAge);
+    }
 
 }

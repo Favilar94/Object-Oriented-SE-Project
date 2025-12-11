@@ -8,7 +8,7 @@ public class Purchase {
 
     public Purchase(Item item) {
         if(! (item instanceof app.Purchasable)) {
-            throw new IllegalArgumentException("Item is not rentable: " + item);
+            throw new IllegalArgumentException("Item is not purchasable: " + item);
         }
         this.item = item;
         this.item.assignStrategies(ItemOperation.PURCHASE);
@@ -23,12 +23,12 @@ public class Purchase {
     }
 
     public double getPurchaseCost() {
-        return this.item.purchaseCostStrategy.getCost(this.item.getItemType());
+        return this.item.getPurchaseCost();
 
     }
 
     public int getPurchaseRewards(int customerAge) {
-        return this.item.purchaseRewardsStrategy.getRewardPoints(customerAge);
+        return this.item.getPurchaseRewards(customerAge);
     }
 
 }

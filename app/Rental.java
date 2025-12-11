@@ -30,11 +30,11 @@ public class Rental {
     }
 
     public double getRentalCost() {
-        return this.item.rentalCostStrategy.getCost(this.getDaysRented());
+        return this.item.getRentalCost(this.getDaysRented());
     }
 
     public int getRentalRewards(int customerAge) {
-        return this.item.rentalRewardsStrategy.getRewardPoints(this.getDaysRented(), customerAge);
+        return this.item.getRentalRewards(this.getDaysRented(), customerAge);
     }
 
 }

@@ -30,7 +30,7 @@ public class Main {
         Item minecraftGame = new items.VideoGame("Minecraft", LocalDate.parse("2011-11-18"), items.Version.STANDARD);
 
         Item lordOfTheRignBook = new items.Book("The Lord of the Rings", LocalDate.parse("1954-07-29"), BookType.PAPERBACK);
-        Item harryPotterBook = new items.Book("Harry Potter and the Sorcerer's Stone", LocalDate.parse("1998-09-1"), BookType.HARDCOVER);
+        Item harryPotterBook = new items.Book("Harry Potter and the Sorcerer's Stone", LocalDate.parse("1998-09-01"), BookType.HARDCOVER);
 
         Item thrillerMusicCD = new items.MusicCD("Top Thriller Hits", LocalDate.parse("2020-10-10"), items.Version.STANDARD);
         Item popMusicCD = new items.MusicCD("Pop Classics", LocalDate.parse("2019-05-05"), items.Version.COLLECTORS_EDITION);
