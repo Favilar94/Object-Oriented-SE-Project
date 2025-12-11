@@ -1,10 +1,9 @@
 package app;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-import app.decorators.Customer5Off;
-import app.decorators.Rental1Off;
-import app.decorators.Rental50PercentOff;
-import app.decorators.RentalFree;
+import app.decorators.*;
 import items.Movie;
 import items.MovieType;
 import items.Popcorn;
@@ -29,37 +28,46 @@ public class Main {
 
 
         /// Rentals//
+        ArrayList<Rental> rentalList = new ArrayList<>();
         Rental rental1 = new Rental(terminatorMovie, 14);
         rental1 = new Rental50PercentOff(rental1);
+        rentalList.add(rental1);
         Rental rental2 = new Rental(minecraftMovie, 7);
         rental2 = new Rental1Off(rental2);
+        rentalList.add(rental2);
         
         Rental rental3 = new Rental(tronAresMovie, 3);
         if(currentRewardsPoints > 10) {
             rental3 = new RentalFree(rental3);
+            rentalList.add(rental3);
             currentRewardsPoints -= 10; 
         }
         Rental rental4 = new Rental(UnchartedGame, 5);
+        rentalList.add(rental4);
 
         //Purchases//
-        Purchase purchase1 = new Purchase(donnieDarkoMovie);
+        ArrayList<Purchase> purchaseList = new ArrayList<>();
+        Purchase purchaseMovie = new Purchase(donnieDarkoMovie);
+        purchaseMovie = new PurchaseFreeItem(purchaseMovie);
+        purchaseList.add(purchaseMovie);
         Purchase purchasePopcorn = new Purchase(popcorn);
+        purchasePopcorn = new PurchaseFreeItem(purchasePopcorn);
+        purchaseList.add(purchasePopcorn);
         Purchase purchasePS5 = new Purchase(Playstation5Pro);
+        purchasePS5 = new Purchase5Off(purchasePS5);
+        purchaseList.add(purchasePS5);
 
         //Transactions//
-        Transaction transaction = new Transaction();
-        transaction.addRental(rental1);
-        transaction.addRental(rental2);
-        transaction.addRental(rental3);
-        transaction.addRental(rental4);
+        Transaction transaction = new Transaction(rentalList, purchaseList);
+        Customer customer1 = new Customer(transaction, "Smith", 21, currentRewardsPoints);
+        customer1.finishTransaction();
+        Statement.printStatement(customer1);
 
-        transaction.addPurchase(purchase1);
-        transaction.addPurchase(purchasePopcorn);
-        transaction.addPurchase(purchasePS5);
-
+        transaction = new Transaction5DollarOff(transaction);
+        customer1.finishTransaction();
+        Statement.printStatement(customer1);
 
         //Payment, transaction coupons and Statement//
-        Customer customer1 = new Customer(transaction, "Smith", 21, currentRewardsPoints);
         customer1 = new Customer5Off(customer1);
 
         customer1.finishTransaction();

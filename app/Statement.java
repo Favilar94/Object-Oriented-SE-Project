@@ -46,5 +46,4 @@ public final class Statement {
         System.out.println("            <Price>" + price + "</Price>");
         System.out.println("        </Item>");
     }
-
 }

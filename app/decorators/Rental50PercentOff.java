@@ -1,6 +1,7 @@
 package app.decorators;
 
 import app.Rental;
+import items.Movie;
 
 public class Rental50PercentOff extends RentalDecorator{
     private final Rental decoratedRental;
@@ -12,7 +13,10 @@ public class Rental50PercentOff extends RentalDecorator{
 
     @Override
     public double getRentalCost() {
-        double originalPrice = this.decoratedRental.getRentalCost();
-        return originalPrice * 0.5;
+        var item = decoratedRental.getItem();
+        if(item instanceof Movie){
+            return this.decoratedRental.getRentalCost() * 0.5;
+        }
+        return this.decoratedRental.getRentalCost();
     }
 }

@@ -1,6 +1,7 @@
 package app.decorators;
 
 import app.Rental;
+import items.Movie;
 
 public class Rental1Off extends RentalDecorator {
     private final Rental decoratedRental;
@@ -17,10 +18,9 @@ public class Rental1Off extends RentalDecorator {
         double originalPrice = this.decoratedRental.getRentalCost();
         boolean applyDiscount = originalPrice > 5.0;
 
-        if (applyDiscount) {
-            return Math.max(0, originalPrice - 1.0);
-        } else {
-            return originalPrice;
+        if(decoratedRental.getItem() instanceof Movie){
+            return decoratedRental.getRentalCost() > 5 ? decoratedRental.getRentalCost() - 1 : decoratedRental.getRentalCost();
         }
+        return decoratedRental.getRentalCost();
     }
 }

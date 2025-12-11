@@ -1,33 +1,33 @@
 package app;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
 public class Transaction {
-    private ArrayList<Rental> rentals = new ArrayList<>();
-    private ArrayList<Purchase> purchases = new ArrayList<>();
+    private List<Rental> rentals;
+    private List<Purchase> purchases;
 
-
-    public void addRental(Rental rental) {
-        rentals.add(rental);
+    public Transaction(List<Rental> rentals, List<Purchase> purchases){
+        this.rentals = new ArrayList<>(rentals);
+        this.purchases = new ArrayList<>(purchases);
     }
 
     public List<Rental> getRentals() {
-        return Collections.unmodifiableList(this.rentals);
-    }
-
-
-    public void addPurchase(Purchase purchase) {
-        purchases.add(purchase);
+        return this.rentals;
     }
 
     public List<Purchase> getPurchases() {
-        return Collections.unmodifiableList(this.purchases);
+        return this.purchases;
     }
 
+    public void addRental(Rental rental){
+        this.rentals.add(rental);
+    }
 
+    public void addPurchase(Purchase purchase){
+        this.purchases.add(purchase);
+    }
 
     public double calculateOwedTotal() {
         double totalAmount = 0;
