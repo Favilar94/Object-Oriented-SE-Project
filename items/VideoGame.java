@@ -13,7 +13,7 @@ public class VideoGame extends Item implements app.Rentable, app.Purchasable {
 
     private Version version;
 
-    public VideoGame(String title, Version version, LocalDate releaseDate) {
+    public VideoGame(String title, LocalDate releaseDate, Version version) {
         super(title, releaseDate);
         this.version = version;
     }

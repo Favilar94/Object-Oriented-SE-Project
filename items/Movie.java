@@ -18,7 +18,7 @@ public class Movie extends Item implements app.Rentable, app.Purchasable {
 
     private MovieType movieType;
 
-    public Movie(String title, MovieType type, LocalDate releaseDate) {
+    public Movie(String title, LocalDate releaseDate, MovieType type) {
         super(title, releaseDate);
         this.movieType = type;
     }

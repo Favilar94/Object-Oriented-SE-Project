@@ -5,6 +5,7 @@ import app.decorators.Customer5Off;
 import app.decorators.Rental1Off;
 import app.decorators.Rental50PercentOff;
 import app.decorators.RentalFree;
+import items.BookType;
 import items.Movie;
 import items.MovieType;
 import items.Popcorn;
@@ -16,16 +17,23 @@ public class Main {
         //Products//
         int currentRewardsPoints = 15; //Assuming that is coming from the customer profile
 
-        Item terminatorMovie = new Movie("The Terminator", MovieType.REGULAR ,LocalDate.parse("1984-10-26"));
-        Item minecraftMovie = new Movie("A Minecraft Movie", MovieType.CHILDREN, LocalDate.parse("2025-04-04"));
-        Item tronAresMovie = new Movie("Tron Ares", MovieType.REGULAR, LocalDate.parse("2025-11-10"));
-        Item donnieDarkoMovie = new Movie("Donnie Darko", MovieType.REGULAR, LocalDate.parse("2001-11-26"));
+        Item terminatorMovie = new Movie("The Terminator", LocalDate.parse("1984-10-26"), MovieType.REGULAR );
+        Item minecraftMovie = new Movie("A Minecraft Movie", LocalDate.parse("2025-04-04"), MovieType.CHILDREN);
+        Item tronAresMovie = new Movie("Tron Ares", LocalDate.parse("2025-11-10"), MovieType.REGULAR);
+        Item donnieDarkoMovie = new Movie("Donnie Darko", LocalDate.parse("2001-11-26"), MovieType.REGULAR);
 
         Item popcorn = new Popcorn("Large Popcorn", items.Sizes.LARGE);
+
         Item Playstation5Pro = new items.Playstation("Playstation 5", items.Version.PRO);
         
-        Item UnchartedGame = new items.VideoGame("Uncharted", items.Version.STANDARD, LocalDate.parse("2010-11-26"));
+        Item unchartedGame = new items.VideoGame("Uncharted", LocalDate.parse("2010-11-26"), items.Version.STANDARD);
+        Item minecraftGame = new items.VideoGame("Minecraft", LocalDate.parse("2011-11-18"), items.Version.STANDARD);
 
+        Item lordOfTheRignBook = new items.Book("The Lord of the Rings", LocalDate.parse("1954-07-29"), BookType.PAPERBACK);
+        Item harryPotterBook = new items.Book("Harry Potter and the Sorcerer's Stone", LocalDate.parse("1998-09-1"), BookType.HARDCOVER);
+
+        Item thrillerMusicCD = new items.MusicCD("Top Thriller Hits", LocalDate.parse("2020-10-10"), items.Version.STANDARD);
+        Item popMusicCD = new items.MusicCD("Pop Classics", LocalDate.parse("2019-05-05"), items.Version.COLLECTORS_EDITION);
 
 
         /// Rentals//
@@ -39,7 +47,7 @@ public class Main {
             rental3 = new RentalFree(rental3);
             currentRewardsPoints -= 10; 
         }
-        Rental rental4 = new Rental(UnchartedGame, 5);
+        Rental rental4 = new Rental(unchartedGame, 5);
 
         //Purchases//
         Purchase purchase1 = new Purchase(donnieDarkoMovie);
