@@ -1,7 +1,6 @@
 package app;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 import app.decorators.*;
 import items.Movie;
