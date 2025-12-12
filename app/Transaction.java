@@ -6,8 +6,8 @@ import java.util.List;
 
 
 public class Transaction {
-    private ArrayList<Rental> rentals = new ArrayList<>();
-    private ArrayList<Purchase> purchases = new ArrayList<>();
+    private List<Rental> rentals = new ArrayList<>();
+    private List<Purchase> purchases = new ArrayList<>();
 
 
     public void addRental(Rental rental) {

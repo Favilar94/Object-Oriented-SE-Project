@@ -2,13 +2,12 @@ package app.decorators;
 
 import app.Rental;
 
-public class Rental1Off extends RentalDecorator {
+public class Rental1OffAnyItem extends RentalDecorator {
     private final Rental decoratedRental;
 
-    public Rental1Off(Rental rental) {
+    public Rental1OffAnyItem(Rental rental) {
         super(rental);
         this.decoratedRental = rental;
-
     }
 
     @Override

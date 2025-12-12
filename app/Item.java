@@ -61,28 +61,28 @@ public abstract class Item {
     public abstract void assignStrategies(ItemOperation operation);
 
     public double getRentalCost(int daysRented) {
-        if (this.rentalCostStrategy == null || this.isRentable) {
+        if (this.rentalCostStrategy == null || !this.isRentable) {
             throw new IllegalStateException("rentalCostStrategy not assigned for item: " + this.title);
         }
         return this.rentalCostStrategy.getCost(daysRented);
     }
 
     public double getPurchaseCost() {
-        if (this.purchaseCostStrategy == null || this.isPurchasable) {
+        if (this.purchaseCostStrategy == null || !this.isPurchasable) {
             throw new IllegalStateException("purchaseCostStrategy not assigned for item: " + this.title);
         }
         return this.purchaseCostStrategy.getCost(this.getItemType());
     }
 
     public int getRentalRewards(int daysRented, int customerAge) {
-        if (this.rentalRewardsStrategy == null || this.isRentable) {
+        if (this.rentalRewardsStrategy == null || !this.isRentable) {
             throw new IllegalStateException("rentalRewardsStrategy not assigned for item: " + this.title);
         }
         return this.rentalRewardsStrategy.getRewardPoints(daysRented, customerAge);
     }
 
     public int getPurchaseRewards(int customerAge) {
-        if (this.purchaseRewardsStrategy == null || this.isPurchasable) {
+        if (this.purchaseRewardsStrategy == null || !this.isPurchasable) {
             throw new IllegalStateException("purchaseRewardsStrategy not assigned for item: " + this.title);
         }
         return this.purchaseRewardsStrategy.getRewardPoints(customerAge);

@@ -2,9 +2,11 @@ package app;
 import java.time.LocalDate;
 
 import app.decorators.Customer5Off;
-import app.decorators.Rental1Off;
-import app.decorators.Rental50PercentOff;
-import app.decorators.RentalFree;
+import app.decorators.CustomerFreeMovie;
+import app.decorators.CustomerFreeVideoGame;
+import app.decorators.Rental1OffAnyItem;
+import app.decorators.Rental50PercentOffAnyItem;
+import app.decorators.RentalFreeMovie;
 import items.BookType;
 import items.Movie;
 import items.MovieType;
@@ -38,21 +40,24 @@ public class Main {
 
         /// Rentals//
         Rental rental1 = new Rental(terminatorMovie, 14);
-        rental1 = new Rental50PercentOff(rental1);
+        rental1 = new Rental50PercentOffAnyItem(rental1);
         Rental rental2 = new Rental(minecraftMovie, 7);
-        rental2 = new Rental1Off(rental2);
+        rental2 = new Rental1OffAnyItem(rental2);
         
         Rental rental3 = new Rental(tronAresMovie, 3);
         if(currentRewardsPoints > 10) {
-            rental3 = new RentalFree(rental3);
+            rental3 = new RentalFreeMovie(rental3);
             currentRewardsPoints -= 10; 
         }
         Rental rental4 = new Rental(unchartedGame, 5);
 
         //Purchases//
-        Purchase purchase1 = new Purchase(donnieDarkoMovie);
+        Purchase purchaseMovie1 = new Purchase(donnieDarkoMovie);
         Purchase purchasePopcorn = new Purchase(popcorn);
         Purchase purchasePS5 = new Purchase(Playstation5Pro);
+        Purchase purchaseVideoGame = new Purchase(minecraftGame);
+        Purchase purchaseBook = new Purchase(harryPotterBook);
+        Purchase purchaseMusicCD = new Purchase(thrillerMusicCD);
 
         //Transactions//
         Transaction transaction = new Transaction();
@@ -61,15 +66,20 @@ public class Main {
         transaction.addRental(rental3);
         transaction.addRental(rental4);
 
-        transaction.addPurchase(purchase1);
+        transaction.addPurchase(purchaseMovie1);
         transaction.addPurchase(purchasePopcorn);
         transaction.addPurchase(purchasePS5);
+        transaction.addPurchase(purchaseVideoGame);
+        transaction.addPurchase(purchaseBook);
+        transaction.addPurchase(purchaseMusicCD);
 
-
+        
         //Payment, transaction coupons and Statement//
         Customer customer1 = new Customer(transaction, "Smith", 21, currentRewardsPoints);
         customer1 = new Customer5Off(customer1);
-
+        customer1 = new CustomerFreeMovie(customer1);
+        customer1 = new CustomerFreeVideoGame(customer1);
+        
         customer1.finishTransaction();
         Statement.printStatement(customer1);
 

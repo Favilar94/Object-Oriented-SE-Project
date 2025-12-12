@@ -2,10 +2,10 @@ package app.decorators;
 
 import app.Rental;
 
-public class Rental50PercentOff extends RentalDecorator{
+public class Rental50PercentOffAnyItem extends RentalDecorator{
     private final Rental decoratedRental;
 
-    public Rental50PercentOff(Rental rental) {
+    public Rental50PercentOffAnyItem(Rental rental) {
         super(rental);
         this.decoratedRental = rental;
     }
