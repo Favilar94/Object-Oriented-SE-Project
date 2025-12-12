@@ -9,12 +9,12 @@ import rewards.purchase.VideoGamePurchaseRewardStrategy;
 import costs.rental.VideoGameRentalCostStrategy;
 import rewards.rental.VideoGameRentalRewardStrategy;
 
-public class VideoGame extends Item implements app.Rentable, app.Purchasable {
+public class VideoGame extends Item{
 
     private Version version;
 
     public VideoGame(String title, LocalDate releaseDate, Version version) {
-        super(title, releaseDate);
+        super(title, releaseDate, true, true);
         this.version = version;
     }
 

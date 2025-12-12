@@ -14,12 +14,12 @@ import rewards.purchase.RegularPurchaseRewardStrategy;
 import rewards.rental.NewReleaseRentalRewardStrategy;
 import rewards.rental.RegularRentalRewardStrategy;
 
-public class Movie extends Item implements app.Rentable, app.Purchasable {
+public class Movie extends Item{
 
     private MovieType movieType;
 
     public Movie(String title, LocalDate releaseDate, MovieType type) {
-        super(title, releaseDate);
+        super(title, releaseDate, true, true);
         this.movieType = type;
     }
 

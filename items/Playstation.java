@@ -4,13 +4,13 @@ import app.Item;
 import costs.purchase.PlaystationPurchaseCostStrategy;
 
 import rewards.purchase.PlaystationPurchaseRewardStrategy;
-public class Playstation extends Item implements app.Purchasable{
+public class Playstation extends Item{
 
     private Version version;
 
 
     public Playstation(String title, Version version) {
-        super(title, null);
+        super(title, null, false, true);
         this.version = version;
     }
 

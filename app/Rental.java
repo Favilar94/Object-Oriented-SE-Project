@@ -7,7 +7,7 @@ public class Rental {
     private int daysRented;
 
     public Rental(Item item, int daysRented) {
-        if(! (item instanceof app.Rentable)) {
+        if(!item.getIsRentable()) {
             throw new IllegalArgumentException("Item is not rentable: " + item);
         }
         this.item = item;

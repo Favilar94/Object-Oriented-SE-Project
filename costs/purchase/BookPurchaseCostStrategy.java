@@ -1,7 +1,6 @@
 package costs.purchase;
 
 import items.BookType;
-import items.Version;
 
 public class BookPurchaseCostStrategy implements PurchaseCostStrategy{
     

@@ -4,12 +4,12 @@ import java.time.LocalDate;
 
 import app.Item;
 
-public class MusicCD extends Item implements app.Purchasable{
+public class MusicCD extends Item{
     
     private Version version;
 
     public MusicCD(String title, LocalDate releaseDate, Version version) {
-        super(title, releaseDate);
+        super(title, releaseDate, false, true);
         this.version = version;
     }
 

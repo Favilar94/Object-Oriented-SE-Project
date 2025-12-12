@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 import app.Item;
 
-public class Book extends Item implements app.Purchasable{
+public class Book extends Item{
 
     private BookType BookType;
     public Book(String title, LocalDate releaseDate, BookType BookType) {
-        super(title, releaseDate);
+        super(title, releaseDate, false, true);
         this.BookType = BookType;
     }
 

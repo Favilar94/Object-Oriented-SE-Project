@@ -7,7 +7,7 @@ public class Purchase {
     private Item item;
 
     public Purchase(Item item) {
-        if(! (item instanceof app.Purchasable)) {
+        if(!item.getIsPurchasable()){
             throw new IllegalArgumentException("Item is not purchasable: " + item);
         }
         this.item = item;

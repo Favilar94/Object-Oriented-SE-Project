@@ -3,11 +3,11 @@ package items;
 import app.Item;
 
 
-public class Popcorn extends Item implements app.Purchasable {
+public class Popcorn extends Item{
     private Sizes size;
 
     public Popcorn(String title, Sizes size) {
-        super(title, null);
+        super(title, null, false, true);
         this.size = size;
     }
 
