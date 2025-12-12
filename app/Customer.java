@@ -51,13 +51,13 @@ public class Customer {
 
     public void finishTransaction() {
         this.rewardsPoints += this.calculateRewardsTotal();
-        this.setRewardsPoints(this.rewardsPoints);
     }
 
-    private void setRewardsPoints(int points) {
-        this.rewardsPoints = points;
-    }
     public int getRewardsPoints() {
         return this.rewardsPoints;
     }   
+
+    public java.util.List<String> getAppliedCoupons() {
+        return java.util.Collections.emptyList();
+    }
 }

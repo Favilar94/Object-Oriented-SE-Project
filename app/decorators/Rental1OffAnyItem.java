@@ -1,6 +1,9 @@
 package app.decorators;
 
 import app.Rental;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Rental1OffAnyItem extends RentalDecorator {
     private final Rental decoratedRental;
@@ -21,5 +24,16 @@ public class Rental1OffAnyItem extends RentalDecorator {
         } else {
             return originalPrice;
         }
+    }
+
+    @Override
+    public List<String> getAppliedCoupons() {
+        List<String> coupons = new ArrayList<>();
+        coupons.addAll(decoratedRental.getAppliedCoupons());
+        double originalPrice = this.decoratedRental.getItem().getRentalCost(this.decoratedRental.getDaysRented());
+        if (originalPrice > 5.0) {
+            coupons.add("1Off");
+        }
+        return Collections.unmodifiableList(coupons);
     }
 }

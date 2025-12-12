@@ -16,32 +16,64 @@ public final class Statement {
 
         System.out.println("    <PurchasedItems>");
         List<Purchase> purchases = customer.getPurchases();
-        purchases.forEach((n) -> printPurchases(n));
+        purchases.forEach((n) -> printPurchase(n));
         System.out.println("    </PurchasedItems>");
 
         System.out.println("    <TotalOwed>" + customer.calculateOwedTotal() + "</TotalOwed>");
         System.out.println("    <RewardsPoints>" + customer.calculateRewardsTotal() + "</RewardsPoints>");
+        java.util.List<String> customerCoupons = customer.getAppliedCoupons();
+        if (!customerCoupons.isEmpty()) {
+            System.out.println("    <AppliedCustomerCoupons>");
+            for (String c : customerCoupons) {
+                System.out.println("        <Coupon>" + c + "</Coupon>");
+            }
+            System.out.println("    </AppliedCustomerCoupons>");
+        }
         System.out.println("</Rental>");
 
     }
-
     private static void printRental(Rental rental) {
-        printItem(rental.getItem(), rental.getItemTitle(), rental.getRentalCost(), rental.getDaysRented());
-    }
+        Item item = rental.getItem();
+        double price = rental.getRentalCost();
+        double original = rental.getOriginalRentalCost();
+        java.util.List<String> coupons = rental.getAppliedCoupons();
 
-    private static void printPurchases(Purchase purchase) {
-        printItem(purchase.getItem(), purchase.getItemTitle(), purchase.getPurchaseCost(), null);
-    }
-
-    private static void printItem(Item item, String name, Double price, Integer daysRented) {
         System.out.println("        <Item>");
         System.out.println("            <Type>" + item.getClass().getSimpleName() + "</Type>");
         System.out.println("            <Version>" + item.getItemType() + "</Version>");
-        System.out.println("            <Name>" + name + "</Name>");
-        if (daysRented != null) {
-            System.out.println("            <DaysRented>" + daysRented + "</DaysRented>");
-        }
+        System.out.println("            <Name>" + rental.getItemTitle() + "</Name>");
+        System.out.println("            <DaysRented>" + rental.getDaysRented() + "</DaysRented>");
+        System.out.println("            <OriginalPrice>" + original + "</OriginalPrice>");
         System.out.println("            <Price>" + price + "</Price>");
+        if (!coupons.isEmpty()) {
+            System.out.println("            <AppliedCoupons>");
+            for (String c : coupons) {
+                System.out.println("                <Coupon>" + c + "</Coupon>");
+            }
+            System.out.println("            </AppliedCoupons>");
+        }
+        System.out.println("        </Item>");
+    }
+
+    private static void printPurchase(Purchase purchase) {
+        Item item = purchase.getItem();
+        double price = purchase.getPurchaseCost();
+        double original = purchase.getOriginalPurchaseCost();
+        java.util.List<String> coupons = purchase.getAppliedCoupons();
+
+        System.out.println("        <Item>");
+        System.out.println("            <Type>" + item.getClass().getSimpleName() + "</Type>");
+        System.out.println("            <Version>" + item.getItemType() + "</Version>");
+        System.out.println("            <Name>" + purchase.getItemTitle() + "</Name>");
+        System.out.println("            <OriginalPrice>" + original + "</OriginalPrice>");
+        System.out.println("            <Price>" + price + "</Price>");
+        if (!coupons.isEmpty()) {
+            System.out.println("            <AppliedCoupons>");
+            for (String c : coupons) {
+                System.out.println("                <Coupon>" + c + "</Coupon>");
+            }
+            System.out.println("            </AppliedCoupons>");
+        }
         System.out.println("        </Item>");
     }
 

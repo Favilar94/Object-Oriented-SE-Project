@@ -1,5 +1,7 @@
 package app;
 import items.ItemOperation;
+import java.util.Collections;
+import java.util.List;
 
 
 public class Rental {
@@ -31,6 +33,14 @@ public class Rental {
 
     public double getRentalCost() {
         return this.item.getRentalCost(this.getDaysRented());
+    }
+
+    public double getOriginalRentalCost() {
+        return this.item.getRentalCost(this.getDaysRented());
+    }
+
+    public List<String> getAppliedCoupons() {
+        return Collections.emptyList();
     }
 
     public int getRentalRewards(int customerAge) {

@@ -16,12 +16,12 @@ public abstract class Item {
     private LocalDate releaseDate;
 
     private Boolean isRentable =false;
-    public RentalCostStrategy rentalCostStrategy;
-    public RentalRewardStrategy rentalRewardsStrategy;
+    protected RentalCostStrategy rentalCostStrategy;
+    protected RentalRewardStrategy rentalRewardsStrategy;
 
     private Boolean isPurchasable = false;
-    public PurchaseCostStrategy purchaseCostStrategy;
-    public PurchaseRewardStrategy purchaseRewardsStrategy;
+    protected PurchaseCostStrategy purchaseCostStrategy;
+    protected PurchaseRewardStrategy purchaseRewardsStrategy;
 
     public Item(String title, LocalDate releaseDate, Boolean isRentable, Boolean isPurchasable) {
         this.title = title;

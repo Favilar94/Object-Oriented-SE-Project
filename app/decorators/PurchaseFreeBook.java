@@ -1,6 +1,10 @@
 package app.decorators;
+
 import app.Purchase;
 import items.Book;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class PurchaseFreeBook extends PurchaseDecorator{
     private final Purchase decoratedPurchase;
@@ -17,5 +21,15 @@ public class PurchaseFreeBook extends PurchaseDecorator{
         }else{
             return this.decoratedPurchase.getPurchaseCost();
         }
+    }
+
+    @Override
+    public List<String> getAppliedCoupons() {
+        List<String> coupons = new ArrayList<>();
+        coupons.addAll(decoratedPurchase.getAppliedCoupons());
+        if (this.decoratedPurchase.getItem() instanceof Book) {
+            coupons.add("FreeBook");
+        }
+        return Collections.unmodifiableList(coupons);
     }
 }

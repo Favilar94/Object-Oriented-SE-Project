@@ -46,5 +46,34 @@ public class CustomerFreeVideoGame extends CustomerDecorator {
         }
     }
 
+    @Override
+    public java.util.List<String> getAppliedCoupons() {
+        java.util.List<String> coupons = new java.util.ArrayList<>();
+        coupons.addAll(super.getAppliedCoupons());
+
+        java.util.List<Purchase> purchases = this.decoratedTransaction.getPurchases();
+        double cheapestVideoGameCost = Double.POSITIVE_INFINITY;
+        boolean playstationPurchase = false;
+
+        for (Purchase p : purchases) {
+            app.Item item = p.getItem();
+            if (item instanceof items.Playstation) {
+                playstationPurchase = true;
+            }
+            else if (item instanceof items.VideoGame) {
+                double cost = p.getPurchaseCost();
+                if (cost < cheapestVideoGameCost) {
+                    cheapestVideoGameCost = cost;
+                }
+            }
+        }
+
+        if (playstationPurchase && cheapestVideoGameCost != Double.POSITIVE_INFINITY) {
+            coupons.add("FreeVideoGame");
+        }
+
+        return java.util.Collections.unmodifiableList(coupons);
+    }
+
     
 }

@@ -1,6 +1,8 @@
 package app;
 
 import items.ItemOperation;
+import java.util.Collections;
+import java.util.List;
 
 
 public class Purchase {
@@ -25,6 +27,14 @@ public class Purchase {
     public double getPurchaseCost() {
         return this.item.getPurchaseCost();
 
+    }
+
+    public double getOriginalPurchaseCost() {
+        return this.item.getPurchaseCost();
+    }
+
+    public List<String> getAppliedCoupons() {
+        return Collections.emptyList();
     }
 
     public int getPurchaseRewards(int customerAge) {

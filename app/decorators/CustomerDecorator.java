@@ -11,4 +11,9 @@ public abstract class CustomerDecorator extends Customer {
         this.decoratedCustomer = decoratedCustomer;
     }
 
+    @Override
+    public java.util.List<String> getAppliedCoupons() {
+        return this.decoratedCustomer.getAppliedCoupons();
+    }
+
 }

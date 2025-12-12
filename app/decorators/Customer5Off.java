@@ -21,4 +21,16 @@ public class Customer5Off extends CustomerDecorator {
             return total;
         }
     }
+
+    @Override
+    public java.util.List<String> getAppliedCoupons() {
+        java.util.List<String> coupons = new java.util.ArrayList<>();
+        coupons.addAll(super.getAppliedCoupons());
+
+        if (this.decoratedTransaction.getRentals().size() > 5) {
+            coupons.add("5Off");
+        }
+
+        return java.util.Collections.unmodifiableList(coupons);
+    }
 }

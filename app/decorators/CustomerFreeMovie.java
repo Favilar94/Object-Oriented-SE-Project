@@ -39,4 +39,30 @@ public class CustomerFreeMovie extends CustomerDecorator{
             return total;
         }
     }
+
+    @Override
+    public java.util.List<String> getAppliedCoupons() {
+        java.util.List<String> coupons = new java.util.ArrayList<>();
+        coupons.addAll(super.getAppliedCoupons());
+
+        java.util.List<Rental> rentals = this.decoratedTransaction.getRentals();
+        int movieCount = 0;
+        double cheapestMovieCost = Double.POSITIVE_INFINITY;
+
+        for (Rental r : rentals) {
+            if (r.getItem() instanceof Movie) {
+                movieCount++;
+                double cost = r.getRentalCost();
+                if (cost < cheapestMovieCost) {
+                    cheapestMovieCost = cost;
+                }
+            }
+        }
+
+        if (movieCount >= 5 && cheapestMovieCost != Double.POSITIVE_INFINITY) {
+            coupons.add("FreeMovie");
+        }
+
+        return java.util.Collections.unmodifiableList(coupons);
+    }
 }

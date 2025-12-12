@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import app.decorators.Customer5Off;
 import app.decorators.CustomerFreeMovie;
 import app.decorators.CustomerFreeVideoGame;
+import app.decorators.PurchaseFreeBook;
 import app.decorators.Rental1OffAnyItem;
 import app.decorators.Rental50PercentOffAnyItem;
 import app.decorators.RentalFreeMovie;
@@ -26,7 +27,7 @@ public class Main {
 
         Item popcorn = new Popcorn("Large Popcorn", items.Sizes.LARGE);
 
-        Item Playstation5Pro = new items.Playstation("Playstation 5", items.Version.PRO);
+        Item playstation5Pro = new items.Playstation("Playstation 5", items.Version.PRO);
         
         Item unchartedGame = new items.VideoGame("Uncharted", LocalDate.parse("2010-11-26"), items.Version.STANDARD);
         Item minecraftGame = new items.VideoGame("Minecraft", LocalDate.parse("2011-11-18"), items.Version.STANDARD);
@@ -39,39 +40,44 @@ public class Main {
 
 
         /// Rentals//
-        Rental rental1 = new Rental(terminatorMovie, 14);
-        rental1 = new Rental50PercentOffAnyItem(rental1);
-        Rental rental2 = new Rental(minecraftMovie, 7);
-        rental2 = new Rental1OffAnyItem(rental2);
+        Rental rentalMovie1 = new Rental(terminatorMovie, 14);
+        rentalMovie1 = new Rental50PercentOffAnyItem(rentalMovie1);
+        Rental rentalMovie2 = new Rental(minecraftMovie, 7);
+        rentalMovie2 = new Rental1OffAnyItem(rentalMovie2);
         
-        Rental rental3 = new Rental(tronAresMovie, 3);
+        Rental rentalMovie3 = new Rental(tronAresMovie, 3);
         if(currentRewardsPoints > 10) {
-            rental3 = new RentalFreeMovie(rental3);
+            rentalMovie3 = new RentalFreeMovie(rentalMovie3);
             currentRewardsPoints -= 10; 
         }
-        Rental rental4 = new Rental(unchartedGame, 5);
+        Rental rentalMovie4 = new Rental(unchartedGame, 5);
 
         //Purchases//
         Purchase purchaseMovie1 = new Purchase(donnieDarkoMovie);
         Purchase purchasePopcorn = new Purchase(popcorn);
-        Purchase purchasePS5 = new Purchase(Playstation5Pro);
+        Purchase purchasePS5 = new Purchase(playstation5Pro);
         Purchase purchaseVideoGame = new Purchase(minecraftGame);
         Purchase purchaseBook = new Purchase(harryPotterBook);
+        Purchase purchaseBook2 = new Purchase(lordOfTheRignBook);
+        purchaseBook2 = new PurchaseFreeBook(purchaseBook2);
         Purchase purchaseMusicCD = new Purchase(thrillerMusicCD);
+        Purchase purchaseMusicCD2 = new Purchase(popMusicCD);
 
         //Transactions//
         Transaction transaction = new Transaction();
-        transaction.addRental(rental1);
-        transaction.addRental(rental2);
-        transaction.addRental(rental3);
-        transaction.addRental(rental4);
+        transaction.addRental(rentalMovie1);
+        transaction.addRental(rentalMovie2);
+        transaction.addRental(rentalMovie3);
+        transaction.addRental(rentalMovie4);
 
         transaction.addPurchase(purchaseMovie1);
         transaction.addPurchase(purchasePopcorn);
         transaction.addPurchase(purchasePS5);
         transaction.addPurchase(purchaseVideoGame);
         transaction.addPurchase(purchaseBook);
+        transaction.addPurchase(purchaseBook2);
         transaction.addPurchase(purchaseMusicCD);
+        transaction.addPurchase(purchaseMusicCD2);
 
         
         //Payment, transaction coupons and Statement//
